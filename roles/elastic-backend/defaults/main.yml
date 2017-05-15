@@ -1,5 +1,5 @@
 elastic_backend_ip: "127.0.0.1"
+logstash_udp_port: "10514"
+logstash_http_port: "9600"
 elasticsearch_http_port: "9200"
-kibana_ip: "127.0.0.1"
-kibana_port: "5601"
 elasticsearch_url: "http://{{ elastic_backend_ip }}:{{ elasticsearch_http_port }}"

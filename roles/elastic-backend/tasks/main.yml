@@ -42,7 +42,3 @@
     enabled: yes
     state: restarted
   become: true
-
-- name: Set fact elastic_backend_ip
-  set_fact:
-    elastic_backend_ip: ansible_host

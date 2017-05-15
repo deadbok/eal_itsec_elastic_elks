@@ -4,3 +4,4 @@
   roles:
     - role: elastic-backend
     - role: rsyslog-debian
+    - role: kibana

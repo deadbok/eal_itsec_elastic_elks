@@ -14,7 +14,7 @@ $ModLoad imklog   # provides kernel logging support
 
 # provides UDP syslog reception
 $ModLoad imudp
-$UDPServerRun 514
+$UDPServerRun {{ rsyslog_udp_port }}
 
 # provides TCP syslog reception
 #$ModLoad imtcp
