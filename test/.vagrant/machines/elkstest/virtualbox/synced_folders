@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/oblivion/sync-src/itet/it_sec_final_project/test","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

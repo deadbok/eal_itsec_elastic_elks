@@ -1,0 +1,24 @@
+- name: Install new rsyslog.conf
+  template:
+    src: rsyslog.conf.j2
+    dest: /etc/rsyslog.conf
+  become: true
+
+- name: Install new rsyslog template file
+  template:
+    src: 01-json-template.conf.j2
+    dest: /etc/rsyslog.d/01-json-template.conf
+  become: true
+
+- name: Install new rsyslog output configuration file
+  template:
+    src: 60-output.conf.j2
+    dest: /etc/rsyslog.d/60-output.conf
+  become: true
+
+- name: Restart the rsyslog service
+  systemd:
+    name: rsyslog
+    enabled: yes
+    state: restarted
+  become: true

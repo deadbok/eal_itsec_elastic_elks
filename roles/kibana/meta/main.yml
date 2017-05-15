@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: openjdk-8-jre }
+  - { role: elastic-repo }

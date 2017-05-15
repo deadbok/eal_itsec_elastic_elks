@@ -1,0 +1,6 @@
+
+---
+- hosts: all
+  roles:
+    - role: elastic-backend
+    - role: rsyslog-debian

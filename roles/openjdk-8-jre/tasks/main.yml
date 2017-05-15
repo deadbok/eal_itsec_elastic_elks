@@ -1,0 +1,25 @@
+- name: Enable the Jessia backports repository
+  apt_repository:
+    repo: deb http://http.debian.net/debian jessie-backports main
+    state: present
+  become: true
+
+- name: Update all packages to the latest version
+  apt:
+    update_cache: yes
+    upgrade: dist
+  become: true
+
+- name: Install OpenJDK JRE headless
+  apt:
+    default_release: jessie-backports
+    name: openjdk-8-jre-headless
+    state: latest
+  become: true
+
+- name: Install OpenJDK JRE
+  apt:
+    default_release: jessie-backports
+    name: openjdk-8-jre
+    state: latest
+  become: true

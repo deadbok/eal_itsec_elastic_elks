@@ -1,0 +1,48 @@
+- name: Install Elasticsearch
+  apt:
+    name: elasticsearch
+    state: latest
+  become: true
+
+- name: Install Logstash
+  apt:
+    name: logstash
+    state: latest
+  become: true
+
+- name: Install new Elasticsearch configuration file
+  template:
+    src: ./elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+  become: true
+
+- name: Install new Logstash configuration file
+  template:
+    src: ./logstash.yml.j2
+    dest: /etc/logstash/logstash.yml
+  become: true
+
+- name: Install rsyslog pipeline configuration file
+  template:
+    src: ./rsyslog-pipeline.conf.j2
+    dest: /etc/logstash/conf.d/rsyslog-pipeline.conf
+  become: true
+
+- name: Enable and restart the Elasticsearch service
+  systemd:
+    name: elasticsearch
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
+  become: true
+
+- name: Enable and restart the Logstash service
+  systemd:
+    name: logstash
+    enabled: yes
+    state: restarted
+  become: true
+
+- name: Set fact elastic_backend_ip
+  set_fact:
+    elastic_backend_ip: ansible_host
