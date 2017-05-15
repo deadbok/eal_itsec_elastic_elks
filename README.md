@@ -1,5 +1,8 @@
 # EAL IT Security final Project
 
+Ansible roles to set up an ELKS stack with Kibana and integrate remote login
+into other host on the network.
+
 ## Project members
 
  * Martin B. K. Grønholdt (deadbok)

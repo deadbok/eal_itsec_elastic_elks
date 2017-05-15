@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+     - group_by: key=os_{{ ansible_distribution }}
+
+- hosts: os_Debian
+  gather_facts: False
+  roles:
+    - role: rsyslog-debian
