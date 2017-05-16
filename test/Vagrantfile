@@ -10,6 +10,30 @@ Vagrant.configure(2) do |config|
       vb.cpus = 1
       vb.memory = 512
     end
+
+    od.vm.provision "shell", inline: <<-SHELL
+      sudo echo 'installpath = https://ftp.spline.de/pub/OpenBSD/6.0/packages/amd64/' > /etc/pkg.conf
+      sudo echo 'export PKG_PATH=https://ftp.spline.de/pub/OpenBSD/6.0/packages/amd64/' >> ~/.profile
+      sudo pkg_add python-2.7.12
+      sudo ln -sf /usr/local/bin/python2.7 /usr/local/bin/python
+      sudo ln -sf /usr/local/bin/python2.7 /usr/bin/python
+      sudo ln -sf /usr/local/bin/python2.7-2to3 /usr/local/bin/2to3
+      sudo ln -sf /usr/local/bin/python2.7-config /usr/local/bin/python-config
+      sudo ln -sf /usr/local/bin/pydoc2.7  /usr/local/bin/pydoc
+     SHELL
+
+    od.vm.provision :ansible do |ansible|
+      ansible.playbook = "playbook.yml"
+      ansible.verbose = true
+      ansible.groups = {
+        "syslog-openbsd"  => ["openbsddummy"]
+      }
+      ansible.host_vars = {
+        "openbsddummy" => {
+          "elastic_backend_ip" => "192.168.12.40"
+        }
+      }
+    end
   end
 
   config.vm.define "debiandummy" do |dd|
