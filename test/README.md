@@ -59,6 +59,8 @@ This machine is in the "elks" group to have the ELKS stack installed by Ansible.
 
 # Ansible
 
+Install a script called `logtest.sh`, used to generate log messages, on all
+machines to all machines. 
 
 ## All running Debian
 

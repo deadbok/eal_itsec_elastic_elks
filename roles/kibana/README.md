@@ -28,5 +28,4 @@ Install Kibane the Elastic stack front end.
 
 # To do
 
- * Everything and...
- * Port configuration variable.
+ * Check Kibana dependencies.
