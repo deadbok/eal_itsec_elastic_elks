@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  roles:
+    - role: logtest
   tasks:
      - group_by: key=os_{{ ansible_distribution }}
 
