@@ -15,30 +15,35 @@
     src: ./elasticsearch.yml.j2
     dest: /etc/elasticsearch/elasticsearch.yml
   become: true
+  notify:
+    - restart elasticsearch
 
 - name: Install new Logstash configuration file
   template:
     src: ./logstash.yml.j2
     dest: /etc/logstash/logstash.yml
   become: true
+  notify:
+    - restart logstash
 
 - name: Install rsyslog pipeline configuration file
   template:
     src: ./rsyslog-pipeline.conf.j2
     dest: /etc/logstash/conf.d/rsyslog-pipeline.conf
   become: true
+  notify:
+    - restart logstash
 
-- name: Enable and restart the Elasticsearch service
+- name: Enable the Elasticsearch service
   systemd:
     name: elasticsearch
     enabled: yes
-    daemon_reload: yes
-    state: restarted
+    state: started
   become: true
 
-- name: Enable and restart the Logstash service
+- name: Enable the Logstash service
   systemd:
     name: logstash
     enabled: yes
-    state: restarted
+    state: started
   become: true

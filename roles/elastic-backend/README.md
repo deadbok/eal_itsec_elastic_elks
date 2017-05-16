@@ -7,6 +7,11 @@ Install the elastic stack back end on Debian Jessie.
  * Elasticsearch
  * Logstash
  * Setup configuration among the daemons
+   * `/etc/elasticsearch/elasticsearch.yml` - Configuration file for the
+     Elasticsearch daemon.
+   * `/etc/logstash/logstash.yml` - Configuration file for the Logstash daemon.
+   * `/etc/logstash/conf.d/rsyslog-pipeline.conf` - Logstash pipeline to filter
+      log data before sending them on to Elasticsearch.
 
 # Dependencies
 
@@ -27,3 +32,5 @@ Install the elastic stack back end on Debian Jessie.
   * Default: `"http://{{ elastic_backend_ip }}:{{ elasticsearch_http_port }}"`
 
 # To do
+
+ * Look in to filters in the rsyslog-pipeline.

@@ -1,0 +1,11 @@
+- name: restart elasticsearch
+  systemd:
+    name: elasticsearch
+    state: restarted
+  become: true
+
+- name: restart logstash
+  systemd:
+    name: logstash
+    state: restarted
+  become: true

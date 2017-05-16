@@ -9,10 +9,12 @@
     src: ./kibana.yml.j2
     dest: /etc/kibana/kibana.yml
   become: true
+  notify:
+    - restart kibana
 
-- name: Enable and restart the Kibana service
+- name: Enable the Kibana service
   systemd:
     name: kibana
     enabled: yes
-    state: restarted
+    state: started
   become: true
