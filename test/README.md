@@ -56,3 +56,38 @@ machine for sending rsyslogs to elkstest.
 ## Debian ELKS test
 
 This machine is in the "elks" group to have the ELKS stack installed by Ansible.
+
+# Ansible
+
+
+## All running Debian
+
+ * Install Midnight Commander.
+ * Install htop.
+
+## All running OpenBSD
+
+ * Install Midnight Commander.
+ * Install the nano editor.
+
+## All in the "elks" groups
+
+  * Set time zone.
+  * Setup NTP to sync the time from a remote server.
+  * Setup the Elks stack backend services.
+  * Setup rsyslog to listen for UDP syslog messageg and send them on to
+    Logstash
+  * Setup Kibana
+
+## All in the "rsyslog-debian"
+
+* Set time zone.
+* Setup NTP to sync the time from a remote server.
+* Setup rsyslog to send log messages to the remote rsyslog VM.
+
+## All in the "syslog-openbsd"
+
+OpenBSD seems to have NTP running so it is not installed.
+
+ * Set time zone.
+ * Setup syslog to send log messages to the remote rsyslog VM.
