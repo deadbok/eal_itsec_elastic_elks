@@ -1,0 +1,5 @@
+- name: Copy logtest.sh test script to "{{ ansible_env.HOME}}"
+  copy:
+    src: "logtest.sh"
+    dest: "{{ ansible_env.HOME }}/logtest.sh"
+    mode: 0740
