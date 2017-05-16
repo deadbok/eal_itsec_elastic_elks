@@ -1,7 +1,11 @@
 
 ---
-- hosts: all
+- hosts: elks
   roles:
     - role: elastic-backend
     - role: rsyslog-debian
     - role: kibana
+
+- hosts: rsyslog-debian
+  roles:
+    - role: rsyslog-debian
