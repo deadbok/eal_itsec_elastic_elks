@@ -1,0 +1,14 @@
+
+- name: Install NTP.
+  apt:
+    name: ntp
+    state: present
+  notify: restart ntp
+  become: true
+
+- name: Enable the NTP daemon.
+  service:
+    name: ntp
+    state: started
+    enabled: yes
+  become: true
