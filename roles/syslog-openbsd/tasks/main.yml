@@ -1,0 +1,14 @@
+- name: Install new syslog.conf
+  template:
+    src: syslog.conf.j2
+    dest: /etc/syslog.conf
+  become: true
+  notify:
+    - restart syslogd
+
+- name: Make sure syslogd is enabled.
+  service:
+    name: syslogd
+    enabled: yes
+    state: started
+  become: true
