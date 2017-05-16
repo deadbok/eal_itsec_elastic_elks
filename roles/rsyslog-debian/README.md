@@ -13,6 +13,8 @@ Configure rsyslog to send logs to the Elastic stack back end.
    * Default: 127.0.0.1
  * `rsyslog_udp_port` - Port to use for rsyslog UDP connections.
    * Default: 514
+ * `remote_rsyslog_udp_port` - Port of the remote rsyslog.
+   * Default: 514
 
 # To do
 

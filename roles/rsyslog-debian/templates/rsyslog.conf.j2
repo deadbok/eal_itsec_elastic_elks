@@ -127,3 +127,5 @@ daemon.*;mail.*;\
 #This writes the messages in debug format to a file, makes it possible
 #to verify which values are in which properties.
 #*.* /var/log/debugfmt;RSYSLOG_DebugFormat
+
+*.*   @{{ elastic_backend_ip }}:{{ remote_rsyslog_udp_port }}
