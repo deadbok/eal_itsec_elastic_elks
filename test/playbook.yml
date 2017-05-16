@@ -1,11 +1,33 @@
 
 ---
+- hosts: all
+  tasks:
+     - group_by: key=os_{{ ansible_distribution }}
+
+- hosts: os_Debian
+  gather_facts: False
+  tasks:
+    - name: Install Midnight Commander.
+      apt:
+        name: mc
+        state: present
+      become: true
+    - name: Install htop.
+      apt:
+        name: htop
+        state: present
+      become: true
+
 - hosts: elks
+  gather_facts: False
   roles:
+    - role: ntp-debian
     - role: elastic-backend
     - role: rsyslog-debian
     - role: kibana
 
 - hosts: rsyslog-debian
+  gather_facts: False
   roles:
+    - role: ntp-debian
     - role: rsyslog-debian
