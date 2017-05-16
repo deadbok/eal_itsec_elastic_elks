@@ -1,7 +1,7 @@
 # EAL IT Security final Project
 
-Ansible roles to set up an ELKS stack with Kibana and integrate remote login
-into other host on the network.
+Ansible roles to set up an ELKS stack with Kibana and integrate remote logging
+in to other host on the network.
 
 ## Project members
 
@@ -18,3 +18,16 @@ into other host on the network.
   * Play books to install rsyslog configurations
     * Debian
     * OpenBSD
+
+## Test
+
+A test system using Virtual Box is in the `test` folder. Use Vagrant to spin
+up the test machines:
+
+* `openbsddummy` - `192.168.12.42` - an OpenBSD machine to gather log data from.
+* `debiandummy` - `192.168.12.41` - a Debian machine to gather log data from.
+* `elkstest` - `192.168.12.40` - a Debian machine running the full ELKS stack
+  including Kibana.
+
+After running vagrant up Kibana is at `http://192.168.12.40:5601`, it might take
+a minute for Kibana to connect to Elasticsearch.
