@@ -1,23 +1,61 @@
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "debian/jessie64"
+  config.vm.define "openbsddummy" do |od|
+    od.vm.box = "ryanmaclean/openbsd-6.0"
+    od.vm.hostname = "openbsddummy"
+    od.vm.network "private_network", ip: "192.168.12.42"
 
-  config.vm.define "elkstest" do |elkstest|
-    elkstest.vm.hostname = "elkstest"
-    elkstest.vm.network "private_network", ip: "192.168.12.40"
+    od.vm.provider "virtualbox" do |vb|
+      vb.name = "elastic_elks_openbsddummy"
+      vb.cpus = 1
+      vb.memory = 512
+    end
+  end
 
-    elkstest.vm.provider "virtualbox" do |vb|
+  config.vm.define "debiandummy" do |dd|
+    dd.vm.box = "debian/jessie64"
+    dd.vm.hostname = "debiandummy"
+    dd.vm.network "private_network", ip: "192.168.12.41"
+
+    dd.vm.provider "virtualbox" do |vb|
+      vb.name = "elastic_elks_debiandummy"
+      vb.cpus = 1
+      vb.memory = 512
+    end
+
+    dd.vm.provision :ansible do |ansible|
+      ansible.playbook = "playbook.yml"
+      ansible.verbose = true
+      ansible.groups = {
+        "rsyslog-debian"  => ["debiandummy"]
+      }
+      ansible.host_vars = {
+        "debiandummy" => {
+          "elastic_backend_ip" => "192.168.12.40"
+        }
+      }
+    end
+  end
+
+  config.vm.define "elkstest" do |et|
+    et.vm.box = "debian/jessie64"
+    et.vm.hostname = "elkstest"
+    et.vm.network "private_network", ip: "192.168.12.40"
+
+    et.vm.provider "virtualbox" do |vb|
       vb.name = "elastic_elks_elkstest"
       vb.cpus = 2
       vb.memory = 4096
     end
 
-    elkstest.vm.provision :ansible do |ansible|
+    et.vm.provision :ansible do |ansible|
       ansible.playbook = "playbook.yml"
       ansible.verbose = true
+      ansible.groups = {
+        "elks" => ["elkstest"],
+      }
       ansible.host_vars = {
         "elkstest" => {
-          "elastic_backend_ip" => "127.0.0.1",
           "kibana_ip" => "0.0.0.0"
         }
       }
