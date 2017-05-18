@@ -24,7 +24,7 @@ in to other host on the network.
 A test system using Virtual Box is in the `test` folder. Use Vagrant
 (vagrant up) to spin up the test machines:
 
-![Test network diagram](../HLD/HLD-network-diagram-test.png)
+![Test network diagram](HLD/HLD-network-diagram-test.png)
 
 * `openbsddummy` - `192.168.12.42` - an OpenBSD machine to gather log data from.
 * `debiandummy` - `192.168.12.41` - a Debian machine to gather log data from.
