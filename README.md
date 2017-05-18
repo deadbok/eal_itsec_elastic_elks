@@ -24,6 +24,8 @@ in to other host on the network.
 A test system using Virtual Box is in the `test` folder. Use Vagrant
 (vagrant up) to spin up the test machines:
 
+![Test network diagram](../HLD/HLD-network-diagram-test.png)
+
 * `openbsddummy` - `192.168.12.42` - an OpenBSD machine to gather log data from.
 * `debiandummy` - `192.168.12.41` - a Debian machine to gather log data from.
 * `elkstest` - `192.168.12.40` - a Debian machine running the full ELKS stack
@@ -38,4 +40,3 @@ a minute for Kibana to connect to Elasticsearch.
  * Check Kibana dependencies.
  * `/etc/rsyslog.d/01-json-template.conf` - Does not separate the log
    information properly.
-   
