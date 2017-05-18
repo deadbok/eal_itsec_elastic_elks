@@ -18,6 +18,7 @@ The Vagrant file spins up 3 hosts:
 To get them running type `vagrant up` in this directory, and everything should
 end up with Kibana listening on 192.168.12.40:5601.
 
+![Test network diagram](../HLD/HLD-network-diagram-test.png)
 # Vagrant
 
 The IP of the ELKS stack is added as a host variable to all machines that are
@@ -60,7 +61,7 @@ This machine is in the "elks" group to have the ELKS stack installed by Ansible.
 # Ansible
 
 Install a script called `logtest.sh`, used to generate log messages, on all
-machines to all machines. 
+machines to all machines.
 
 ## All running Debian
 
