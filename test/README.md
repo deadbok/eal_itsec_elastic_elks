@@ -98,11 +98,18 @@ OpenBSD seems to have NTP running so it is not installed.
 
 # Notes for Windows
 
+## VMWare
+
+If you have VMWare the esiest solotion is to create a Linuv VM with something like 6Gb of RAM and run the test in this.
+
+## "Native"
+
 Vagrant has a Windows version, to get Ansible running with Vagrant follow these guides:
 
  * [Running Vagrant with Ansible Provisioning on Windows](https://www.azavea.com/blog/2014/10/30/running-vagrant-with-ansible-provisioning-on-windows/)
  * [Ansible – Using Ansible on Windows via Cygwin]([http://everythingshouldbevirtual.com/ansible-using-ansible-on-windows-via-cygwin)
 
+This should make it possible to run the test on Windows, but it never succeded.
 Vagrant might give up with this message:
 
     There was an error when attempting to rsync a synced folder.
@@ -116,4 +123,4 @@ Vagrant might give up with this message:
 
 To fix this set the group of all files, cloned from this repository, to Users with `chmod` and give the group Read and Write permission to them using `chown`, both from Cygwin.
 
-Remeber to run `vagrant up` from the Cygwin prompt.
+Remember to run `vagrant up` from the Cygwin prompt.
