@@ -95,3 +95,25 @@ OpenBSD seems to have NTP running so it is not installed.
 
  * Set time zone.
  * Setup syslog to send log messages to the remote rsyslog VM.
+
+# Notes for Windows
+
+Vagrant has a Windows version, to get Ansible running with Vagrant follow these guides:
+
+ * [Running Vagrant with Ansible Provisioning on Windows](https://www.azavea.com/blog/2014/10/30/running-vagrant-with-ansible-provisioning-on-windows/)
+ * [Ansible – Using Ansible on Windows via Cygwin]([http://everythingshouldbevirtual.com/ansible-using-ansible-on-windows-via-cygwin)
+
+Vagrant might give up with this message:
+
+    There was an error when attempting to rsync a synced folder.
+    Please inspect the error message below for more info.
+
+    Host path: /cygdrive/c/Users/oblivion/eal_itsec_elastic_elks/test/
+    Guest path: /vagrant
+    Command: "rsync" "--verbose" "--archive" "--delete" "-z" "--copy-links" "--chmod=ugo=rwX" "--no-perms" "--no-owner" "--no-group" "--rsync-path" "sudo rsync" "-e" "ssh -p 2222 -o LogLevel=FATAL   -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i 'C:/Users/oblivion/eal_itsec_elastic_elks/test/.vagrant/machines/openbsddummy/virtualbox/private_key'" "--exclude" ".vagrant/" "/cygdrive/c/Users/oblivion/eal_itsec_elastic_elks/test/" "vagrant@127.0.0.1:/vagrant"
+    Error: rsync: send_files failed to open "/cygdrive/c/Users/oblivion/eal_itsec_elastic_elks/test/roles": Permission denied (13)
+    rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1196) [sender=3.1.2]  
+
+To fix this set the group of all files, cloned from this repository, to Users with `chmod` and give the group Read and Write permission to them using `chown`, both from Cygwin.
+
+Remeber to run `vagrant up` from the Cygwin prompt.
