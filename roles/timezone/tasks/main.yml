@@ -1,4 +1,13 @@
-- name: Set timezone to "{{ timezone }}"
+- name: Set time zone to "{{ timezone }}"
   timezone:
     name: "{{ timezone }}"
+  become: true
+  when: ansible_distribution != "OpenBSD"
+
+- name: Set time zone to "{{ timezone }}" on OpenBSD.
+  file:
+    src: /usr/share/zoneinfo/{{ timezone}}
+    dest: /etc/localtime
+    state: link
+  when: ansible_distribution == "OpenBSD"
   become: true
