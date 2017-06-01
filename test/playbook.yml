@@ -38,7 +38,6 @@
   roles:
     - role: ntp-debian
     - role: elastic-backend
-    - role: rsyslog-debian
     - role: kibana
 
 - hosts: rsyslog-debian
